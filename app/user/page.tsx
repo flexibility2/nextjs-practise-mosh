@@ -1,4 +1,5 @@
 import React from "react";
+import UserTable from "./UserTable";
 
 interface User {
   id: number;
@@ -10,11 +11,6 @@ const UserPage = async () => {
   //   next: { revalidate: 10  },
   // });
   // const res = await fetch("https://jsonplaceholder.typicode.com/users", {});
-  const res = await fetch("https://jsonplaceholder.typicode.com/users", {
-    cache: "no-store",
-  });
-
-  const uses: User[] = await res.json();
 
   return (
     <>
@@ -27,27 +23,8 @@ const UserPage = async () => {
       </ul> */}
 
       <h1>UserPage</h1>
-      <div>{new Date().toISOString()}</div>
-      <table className="table">
-        <thead>
-          <tr>
-            <th>id</th>
-            <th>name</th>
-          </tr>
-        </thead>
-        <tbody>
-          {uses.map((user) => (
-            <tr key={user.id} className="hover">
-              <td>{user.id}</td>
-              <td>{user.name}</td>
-            </tr>
-          ))}
-        </tbody>
-
-        {/* {uses.map((user) => (
-          <li key={user.id}>{user.name}</li>
-        ))} */}
-      </table>
+      {/* <div>{new Date().toISOString()}</div> */}
+      <UserTable></UserTable>
     </>
   );
 };
