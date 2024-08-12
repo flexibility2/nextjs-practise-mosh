@@ -6,7 +6,11 @@ const ProductCard = () => {
     // <div className={styles.card}>
     //   <AddChart></AddChart>
     // </div>
-    <div className="p-5 bg-sky-300 my-5 hover:bg-white text-gray-400 text-xl">
+    // <div className="p-5 bg-sky-300 my-5 hover:bg-white text-gray-400 text-xl">
+    //   <AddChart></AddChart>
+    // </div>
+
+    <div>
       <AddChart></AddChart>
     </div>
   );

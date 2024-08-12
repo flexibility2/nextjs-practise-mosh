@@ -18,13 +18,36 @@ const UserPage = async () => {
 
   return (
     <>
-      <h1>UserPage</h1>
+      {/* <h1>UserPage</h1>
       <div>{new Date().toISOString()}</div>
       <ul>
         {uses.map((user) => (
           <li key={user.id}>{user.name}</li>
         ))}
-      </ul>
+      </ul> */}
+
+      <h1>UserPage</h1>
+      <div>{new Date().toISOString()}</div>
+      <table className="table">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>name</th>
+          </tr>
+        </thead>
+        <tbody>
+          {uses.map((user) => (
+            <tr key={user.id} className="hover">
+              <td>{user.id}</td>
+              <td>{user.name}</td>
+            </tr>
+          ))}
+        </tbody>
+
+        {/* {uses.map((user) => (
+          <li key={user.id}>{user.name}</li>
+        ))} */}
+      </table>
     </>
   );
 };

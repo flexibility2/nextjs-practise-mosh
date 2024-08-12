@@ -4,7 +4,9 @@ import React from "react";
 const AddChart = () => {
   return (
     <div>
-      <button onClick={() => console.log("object")}>Add to chart</button>
+      <button className="btn btn-primary" onClick={() => console.log("object")}>
+        Add to chart
+      </button>
     </div>
   );
 };
