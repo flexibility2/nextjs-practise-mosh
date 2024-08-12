@@ -1,12 +1,10 @@
 import React from "react";
 import UserTable from "./UserTable";
-
-interface User {
-  id: number;
-  name: string;
+interface Props {
+  searchParams: { sortOrder: string };
 }
-
-const UserPage = async () => {
+const UserPage = ({ searchParams: { sortOrder } }: Props) => {
+  console.log("searchParams", sortOrder);
   // const res = await fetch("https://jsonplaceholder.typicode.com/users", {
   //   next: { revalidate: 10  },
   // });
@@ -24,7 +22,7 @@ const UserPage = async () => {
 
       <h1>UserPage</h1>
       {/* <div>{new Date().toISOString()}</div> */}
-      <UserTable></UserTable>
+      <UserTable sortOrder={sortOrder}></UserTable>
     </>
   );
 };
