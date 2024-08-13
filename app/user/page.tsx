@@ -1,5 +1,6 @@
 import React from "react";
 import UserTable from "./UserTable";
+import Link from "next/link";
 interface Props {
   searchParams: { sortOrder: string };
 }
@@ -22,6 +23,9 @@ const UserPage = ({ searchParams: { sortOrder } }: Props) => {
 
       <h1>UserPage</h1>
       {/* <div>{new Date().toISOString()}</div> */}
+      <Link href={"/user/new"} className="btn">
+        NEW USER
+      </Link>
       <UserTable sortOrder={sortOrder}></UserTable>
     </>
   );
