@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import UserTable from "./UserTable";
 import Link from "next/link";
 interface Props {
@@ -26,7 +26,9 @@ const UserPage = ({ searchParams: { sortOrder } }: Props) => {
       <Link href={"/user/new"} className="btn">
         NEW USER
       </Link>
-      <UserTable sortOrder={sortOrder}></UserTable>
+      <Suspense fallback={<div>Loading...</div>}>
+        <UserTable sortOrder={sortOrder}></UserTable>
+      </Suspense>
     </>
   );
 };
