@@ -21,3 +21,23 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ id: 1, name: body.name }, { status: 201 });
   }
 }
+
+export async function PUT(request: NextRequest, params: Props) {
+  const body = await request.json();
+  if (!body.name) {
+    return NextResponse.json({ error: "Name is required" }, { status: 400 });
+  }
+  if (params.params.id > 10) {
+    return NextResponse.json({ error: "not found" }, { status: 404 });
+  } else {
+    return NextResponse.json({ id: params.params.id, name: body.name });
+  }
+}
+
+export async function DELETE(request: NextRequest, params: Props) {
+  if (params.params.id > 10) {
+    return NextResponse.json({ error: "not found" }, { status: 404 });
+  } else {
+    return NextResponse.json({});
+  }
+}
