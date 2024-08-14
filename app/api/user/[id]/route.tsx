@@ -12,3 +12,12 @@ export function GET(request: NextRequest, params: Props) {
     return NextResponse.json({ id: params.params.id, name: "te" });
   }
 }
+
+export async function POST(request: NextRequest) {
+  const body = await request.json();
+  if (!body.name) {
+    return NextResponse.json({ error: "name is required" }, { status: 400 });
+  } else {
+    return NextResponse.json({ id: 1, name: body.name }, { status: 201 });
+  }
+}
