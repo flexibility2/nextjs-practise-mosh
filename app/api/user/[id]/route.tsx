@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import React from "react";
+import { User } from "../schema";
 
 interface Props {
   params: { id: number };
@@ -15,8 +16,9 @@ export function GET(request: NextRequest, params: Props) {
 
 export async function POST(request: NextRequest) {
   const body = await request.json();
-  if (!body.name) {
-    return NextResponse.json({ error: "name is required" }, { status: 400 });
+  const res = User.safeParse(body);
+  if (res.error) {
+    return NextResponse.json(res.error.errors, { status: 400 });
   } else {
     return NextResponse.json({ id: 1, name: body.name }, { status: 201 });
   }
