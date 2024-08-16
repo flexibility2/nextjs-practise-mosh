@@ -40,17 +40,36 @@ export async function PUT(request: NextRequest, params: Props) {
   if (!body.name) {
     return NextResponse.json({ error: "Name is required" }, { status: 400 });
   }
-  if (parseInt(params.params.id) > 10) {
+  const user = await prisma.user.findUnique({
+    where: {
+      id: parseInt(params.params.id),
+    },
+  });
+  if (!user) {
     return NextResponse.json({ error: "not found" }, { status: 404 });
   } else {
-    return NextResponse.json({ id: params.params.id, name: body.name });
+    const updatedUser = await prisma.user.update({
+      where: { id: user.id },
+      data: {
+        name: body.name,
+        email: body.email,
+      },
+    });
+    return NextResponse.json(updatedUser);
   }
 }
 
 export async function DELETE(request: NextRequest, params: Props) {
-  if (parseInt(params.params.id) > 10) {
-    return NextResponse.json({ error: "not found" }, { status: 404 });
-  } else {
-    return NextResponse.json({});
+  const user = await prisma.user.findUnique({
+    where: {
+      id: parseInt(params.params.id),
+    },
+  });
+  if (!user) {
+    return NextResponse.json({ error: "not found user" }, { status: 404 });
   }
+  const res = await prisma.user.delete({
+    where: { id: user.id },
+  });
+  return NextResponse.json({});
 }
